@@ -1,0 +1,379 @@
+### taskApi
+
+
+### 프로젝트 등록
+
+- request
+
+post		/api/project/register
+
+{
+	“name” : ””,
+	“adminId” : “”
+}
+
+
+- response
+
+{
+	“id” : “”
+}
+
+
+###  프로젝트 task 조회 (프로젝트 클릭했을 때 관련 task 조회)
+
+- request
+
+get		/api/project/{projectId}
+
+- response
+
+[
+	{
+		“id” : “”,
+		“name” : “”,
+
+	},
+	{
+		“id” : “”,
+		“name” : “”,
+	}
+
+]
+
+### 유저가 속한 프로젝트 전체 조회
+- request
+
+get		/api/projects/{userId}
+
+- response
+
+[
+	{
+		“id” : “”,
+		“name” : “”,
+
+	},
+
+	{
+		“id” : “”,
+		“name” : “”,
+	}
+]
+
+
+### 프로젝트 수정
+
+- request
+
+post		/api/project/edit/{projectId}
+
+{
+	“name” : “”,
+	“status” : “” 	(ACTIVE, INACTIVE,TERMINATION 중 1개)
+}
+
+- response
+
+<Response body is empty>
+
+
+
+### 프로젝트 삭제
+
+- request
+
+DELETE		/api/project/{projectId}
+
+- response
+
+<Response body is empty>
+
+
+### 프로젝트에 멤버 추가
+
+-request
+
+
+post		/api/project/{projectId}/addMember/{memberId}
+
+- response
+
+<Response body is empty>
+
+
+
+
+### task 등록
+
+- request
+
+post		/api/task/register
+
+{
+	“name” : “”,
+	“content” : “”.
+	“userId” : “”,
+	“projectId” : “”
+	“tag” : [
+				{
+					“id” : “”,
+					“name” : “”
+				},
+				{
+					“id” : “”,
+					“name” : “”
+				}
+
+			],
+	“milestone” : “”
+}
+
+
+- response
+
+{
+	“id” : “”
+}
+
+
+### task 조회
+
+- request
+
+GET		/api/task/{taskId}
+
+- response
+
+{
+	“name” : “”,
+	“content” : “”,
+	“userId” : ‘“,
+	“projectId” : “”,
+	“tag” : [
+					{
+						“id” : “”,
+						“name” : “”
+					},
+					{
+						“id” : “”,
+						“name” : “”
+					}
+				],
+	“milestone” :  “”,
+	“comment” : [
+					{
+						“id” : “”,
+						“content” : “”
+					}
+				]
+}
+
+
+### task 수정폼요청시
+
+- request
+
+get		/api/task/{taskId}
+
+- response
+
+{
+	“name” : “”,
+	“content” : “”,
+	“tag” : [
+					{
+						“id” : “”,
+						“name” : “”
+					},
+					{
+						“id” : “”,
+						“name” : “”
+					}
+				],
+	“milestone” : “”,
+	“tags” : [
+					{
+						“id” : “”,
+						“name” : “”
+					},
+					{
+						“id” : “”,
+						“name” : “”
+					}
+				]
+	“milestones” : [
+					{
+						“id” : “”,
+						“status” : “”
+					},
+					{
+						“id” : “”,
+						“status” : “”
+					}
+				]
+}
+
+### task 수정
+
+- request
+
+post		/api/task/{taskId}
+
+
+{
+	“name” : “”,
+	“content” : “”.
+	“userId” : “”,
+	“projectId” : “”
+	“tag” : [
+				{
+					“id” : “”,
+					“name” : “”
+				},
+				{
+					“id” : “”,
+					“name” : “”
+				}
+
+			],
+	“milestone” : “”
+}
+
+
+- response
+
+<Response body is empty>
+
+
+
+
+
+###	task 삭제
+
+- request
+
+DELETE		/api/task/{taskId}
+
+- response
+
+<Response body is empty>
+
+### tag 등록
+
+- request
+
+post		/api/tag/register
+
+{
+	“name” : “”,
+	“projectId” : “”
+}
+
+-response
+
+<Response body is empty>
+
+
+### tag 삭제
+
+- request
+
+delete		/api/tag/{tagId}
+
+- response
+
+<Response body is empty>
+
+
+
+### milestone 등록
+
+- request
+
+post		/api/milestone/register
+
+{
+	“projectId” : “”,
+	“status” : “”
+
+}
+
+- response
+
+<Response body is empty>
+
+### milestone 삭제
+
+- request
+
+delete /api/milestone/{milestoneId}
+
+- response
+
+<Response body is empty>
+
+
+### comment 등록
+
+- request
+
+post		/api/comment/register
+
+
+{
+	“taskId” : “”,
+	“projectMemberId” : “”,
+	“content” : “”
+
+}
+
+
+- response
+
+{
+
+	“id” : “”
+]
+
+### coment 삭제
+
+- request
+delete		/api/comment/{commentId}
+
+
+- response
+
+
+<Response body is empty>
+
+
+### comment 수정폼
+
+- request
+
+get		/api/comment/{commentId}
+
+- response
+
+{
+
+	“content” : “”
+}
+
+### comment  수정
+
+- request
+
+post 	/api/comment/{commentId}
+
+{
+	“taskId” : “”,
+	“projectMemberId” : “”,
+	“content” : “”
+
+}
+
+- response
+
+<Response body is empty>
