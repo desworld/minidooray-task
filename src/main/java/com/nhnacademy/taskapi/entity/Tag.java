@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,4 +26,16 @@ public class Tag {
 
     @ManyToOne
     private Project projectId;
+
+    public Tag(String name, Project projectId) {
+        this.name = name;
+        this.projectId = projectId;
+    }
+
+    @OneToMany(mappedBy = "tagId",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<TaskTag> taskTags = new ArrayList<>();
+
+    public void addTaskTag(TaskTag taskTag) {
+        taskTags.add(taskTag);
+    }
 }

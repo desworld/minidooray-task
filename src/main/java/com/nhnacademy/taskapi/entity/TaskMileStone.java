@@ -3,30 +3,28 @@ package com.nhnacademy.taskapi.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class TaskTag {
+public class TaskMileStone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @OneToOne
     @NotNull
     private Task taskId;
 
     @ManyToOne
     @NotNull
-    private Tag tagId;
+    @Setter
+    private MileStone mileStoneId;
 
-    public TaskTag(Task taskId, Tag tagId) {
+    public TaskMileStone(Task taskId, MileStone mileStoneId) {
         this.taskId = taskId;
-        this.tagId = tagId;
+        this.mileStoneId = mileStoneId;
     }
 }

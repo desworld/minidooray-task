@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Getter
 public class ProjectMember {
     @Id
@@ -23,4 +25,16 @@ public class ProjectMember {
 
     @NotNull
     private long memberId;
+
+    public ProjectMember(Project projectId, long memberId) {
+        this.projectId = projectId;
+        this.memberId = memberId;
+    }
+
+    @OneToMany(mappedBy = "projectMemberId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
 }

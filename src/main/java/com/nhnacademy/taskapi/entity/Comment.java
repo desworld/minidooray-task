@@ -8,14 +8,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
-public class TaskTag {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    private String content;
+
+    @NotNull
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @NotNull
@@ -23,10 +32,12 @@ public class TaskTag {
 
     @ManyToOne
     @NotNull
-    private Tag tagId;
+    private ProjectMember projectMemberId;
 
-    public TaskTag(Task taskId, Tag tagId) {
+    public Comment(String content, LocalDateTime createdAt, Task taskId, ProjectMember projectMemberId) {
+        this.content = content;
+        this.createdAt = createdAt;
         this.taskId = taskId;
-        this.tagId = tagId;
+        this.projectMemberId = projectMemberId;
     }
 }
