@@ -39,4 +39,10 @@ public class MileStoneService {
         MileStone savedMileStone = mileStoneRepository.save(mileStone);
         return savedMileStone;
     }
+
+
+    public void deleteById(long mileStoneId) {
+        mileStoneRepository.deleteById(mileStoneId);
+
+    }
 }

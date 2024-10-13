@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,6 +26,13 @@ public class MileStoneController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
+    }
+
+    @DeleteMapping("/api/milestone/{milestoneId}")
+    public ResponseEntity<Void> deleteMileStoneById(@PathVariable("milestoneId") long milestoneId) {
+        mileStoneService.deleteById(milestoneId);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

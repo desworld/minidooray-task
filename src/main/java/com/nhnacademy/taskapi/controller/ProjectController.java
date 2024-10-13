@@ -8,8 +8,10 @@ import com.nhnacademy.taskapi.domain.dto.projectMember.ProjectMemberDto;
 import com.nhnacademy.taskapi.domain.dto.task.TaskDto;
 import com.nhnacademy.taskapi.domain.request.project.ProjectEditReq;
 import com.nhnacademy.taskapi.domain.request.project.ProjectRegisterReq;
+import com.nhnacademy.taskapi.entity.MileStone;
 import com.nhnacademy.taskapi.entity.Project;
 import com.nhnacademy.taskapi.entity.ProjectStatus;
+import com.nhnacademy.taskapi.service.MileStoneService;
 import com.nhnacademy.taskapi.service.ProjectService;
 import com.nhnacademy.taskapi.service.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +31,8 @@ import java.util.Objects;
 public class ProjectController {
 
     private final ProjectService projectService;
-//    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    //    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final MileStoneService mileStoneService;
 
     // project register
     @PostMapping("/api/project/register")
@@ -38,10 +41,15 @@ public class ProjectController {
         Project project = new Project(registerReq.getName(), ProjectStatus.ACTIVE, LocalDateTime.now(), registerReq.getAdminId());
 
         ProjectIdDto projectIdDto = projectService.saveProject(project);
-
+        Project savedProject = projectService.findById(projectIdDto.getId());
+        mileStoneService.saveMileStone(new MileStone("start", savedProject));
+        mileStoneService.saveMileStone(new MileStone("end", savedProject));
         if (Objects.isNull(projectIdDto)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+
+
+
         return new HttpEntity<>(projectIdDto);
     }
 

@@ -58,7 +58,13 @@ public class TaskController {
         }
 
         // taskMileStone save
-        MileStone mileStone = mileStoneService.findById(taskRegisterReq.getMilestone().getId());
+        MileStone mileStone;
+        if (taskRegisterReq.getMilestone().getId() == 0) {
+            mileStone = mileStoneService.findById(1);
+        }else{
+            mileStone = mileStoneService.findById(taskRegisterReq.getMilestone().getId());
+        }
+
         TaskMileStone savedTaskMileStone = taskMileStoneService.saveTaskMileStone(new TaskMileStone(taskService.findById(taskIdDto.getId())
                 , mileStone));
         mileStone.addTaskMileStone(savedTaskMileStone);
@@ -101,6 +107,8 @@ public class TaskController {
     @ResponseStatus(HttpStatus.OK)
     public HttpEntity<TaskEditFormRes> editTaskForm(@PathVariable("taskId") long taskId) {
         Task task = taskService.findById(taskId);
+
+
         List<TagIdNameDto> tagIdNameDtoList = tagService.findALlTagIdNameByTaskId(taskId);
 
         MileStoneIdStatusDto mileStoneIdStatusDto = mileStoneService.findMileStoneByTaskId(taskId);

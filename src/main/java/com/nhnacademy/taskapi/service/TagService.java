@@ -36,4 +36,9 @@ public class TagService {
         Tag savedTag = tagRepository.save(tag);
         return savedTag;
     }
+
+    public void deleteTagById(long tagId) {
+        tagRepository.deleteById(tagId);
+
+    }
 }

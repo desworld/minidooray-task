@@ -52,14 +52,6 @@ Content-Type: application/json
   "status": "end"
 }
 
-### milestone 등록3
-POST localhost:8080/api/milestone/register
-Content-Type: application/json
-
-{
-  "projectId": "1",
-  "status": "test"
-}
 
 ### task 등록
 POST localhost:8080/api/task/register
@@ -86,23 +78,7 @@ Content-Type: application/json
   }
 }
 
-### task 등록2
-POST localhost:8080/api/task/register
-Content-Type: application/json
 
-{
-  "name": "task2",
-  "content": "bla",
-  "userId": "2",
-  "projectId": "1",
-  "tag": [
-
-  ],
-  "milestone": {
-    "id": "1",
-    "status": "start"
-  }
-}
 
 ### 프로젝트 조회 get		/api/project/{projectId}
 GET localhost:8080/api/project/1
@@ -160,26 +136,15 @@ Content-Type: application/json
   }
 }
 
-### task 수정폼
-GET localhost:8080/api/task/edit/1
 
+### tag 삭제
+DELETE localhost:8080/api/tag/1
 
-### task 수정2
-POST localhost:8080/api/task/edit/1
-Content-Type: application/json
+### milestone 삭제
+DELETE localhost:8080/api/milestone/1
 
-{
-  "name": "revision1",
-  "content": "revision",
-  "tag": [
-
-  ],
-  "milestone": {
-    "id": "1",
-    "status": "start"
-  }
-}
-
+### comment 삭제
+DELETE localhost:8080/api/comment/1
 
 ### task 삭제
 DELETE localhost:8080/api/task/1
