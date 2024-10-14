@@ -78,6 +78,24 @@ Content-Type: application/json
   }
 }
 
+### task 등록(태그없는경우)
+POST localhost:8080/api/task/register
+Content-Type: application/json
+
+{
+  "name": "task1",
+  "content": "bla",
+  "userId": "2",
+  "projectId": "1",
+  "tag": [
+
+  ],
+  "milestone": {
+    "id": "1",
+    "status": "start"
+  }
+}
+
 
 
 ### 프로젝트 조회 get		/api/project/{projectId}

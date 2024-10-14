@@ -26,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class TaskController {
 
     private final TaskService taskService;

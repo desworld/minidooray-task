@@ -28,6 +28,7 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class ProjectController {
 
     private final ProjectService projectService;

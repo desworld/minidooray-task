@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class TagController {
     private final TagService tagService;
     private final ProjectService projectService;

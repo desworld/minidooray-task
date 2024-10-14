@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class MileStoneController {
     private final MileStoneService mileStoneService;
     private final ProjectService projectService;

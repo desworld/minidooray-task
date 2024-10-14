@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class CommentController {
     private final CommentService commentService;
     private final TaskService taskService;
